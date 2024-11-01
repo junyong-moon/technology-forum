@@ -7,7 +7,8 @@ const User = new mongoose.Schema({
     username: {type: String, required: true},
     hash: {type: String, required: true},
     email: {type: String, required: true},
-    registrationDate: {type: Date, required: true}
+    registrationDate: {type: Date, required: true},
+    postReacted: {type: Array, required: true}
 });
 
 const Article = new mongoose.Schema({
