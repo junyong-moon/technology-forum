@@ -1,6 +1,11 @@
+import './config.mjs'
+import './db.mjs'
+
 import express from 'express'
-import path from 'path'
+import session from 'express-session';
+import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
+import path from 'path'
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);

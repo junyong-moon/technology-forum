@@ -1,53 +1,68 @@
 The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
 
-(__TODO__: your project name)
-
-# Shoppy Shoperson 
+# Technology Forum (Tentative Name - subject to change)
 
 ## Overview
 
-(__TODO__: a brief one or two paragraph, high-level description of your project)
-
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
-
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
+Technology Forum is a community to share tech information and knowledge, for developers and technology enthusiasts. It is a simple website consisting of a newsstand--where administrators share news--and a forum--where users and post information/questions to the related topics. After registration, users are free to share their opinion and knowledge, as well as to rant about recent Apple product! Not only can they do this in a post, but they may do so in a comment, given that the language is appropriate. Also, should users agree (or disagree) to a post or a comment, they can like/dislike them.
 
 
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other) 
+The application will store Users, Articles, (user-written) Posts, and Comments
 
-The application will store Users, Lists and Items
-
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
-
-(__TODO__: sample documents)
+* Each user contains login/authentification credentials
+* Each article and post will have views, likes, and comments
+* Each comment will have likes and replies (i.e. a comment can reference to another comments)
 
 An Example User:
-
 ```javascript
 {
-  username: "shannonshopper",
-  hash: // a password hash,
-  lists: // an array of references to List documents
+  username: "sample_username",
+  hash: // a password hash
+  email: // an email address to the user
+  registationDate: // the date when the user registrated
 }
 ```
 
-An Example List with Embedded Items:
-
+An Example of Article:
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
-  createdAt: // timestamp
+    title: // title of the article
+    content: // the content of the article
+    //photo: Possibly add screenshots or graphics into an article?
+    views: // the number of total views
+    likes: // the number of likes
+    uploadedTime: // timestamp
+    comments: // comments of the article
 }
 ```
 
+An Example of user-written Post:
+```javascript
+{
+    title: // title of the post
+    content: // the content of the post
+    writtenBy: // the ObjectID that points to the user
+    //photo: Possibly add screenshots or graphics into an article?
+    views: 5,
+    likes: 1,
+    uploadedTime: // timestamp
+    comments: // comments of the article
+}
+```
+
+An Example of Comment:
+```javascript
+{
+    content: // content of the comment
+    writtenBy: // the ObjectID that points to the user
+    likes: 0,
+    replies: // an array of ObjectID that points to each comment
+    reaction: // An optional emoji or "sticker"
+    uploadedTime: // timestamp
+}
+```
 
 ## [Link to Commented First Draft Schema](db.mjs) 
 
