@@ -1,5 +1,3 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
-
 # Technology Forum (Tentative Name - subject to change)
 
 ## Overview
@@ -71,25 +69,23 @@ Please follow the link to view the codebase for the first draft schema.
 
 ## Wireframes
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.)
+This shows a quick overview of each pages, although each page design has not yet become concrete.
+More features and pages will be added as I progress with the project.
+(Implementation of each new and post, for example)
 
-/list/create - page for creating a new shopping list
+/news - displays news title, excerpt of the content, date posted, and one photo (lists them latest to oldest)
 
-![list create](documentation/list-create.png)
+![newspage](documentation/newspage.png)
 
-/list - page for showing all shopping lists
+/posts - displays post title, username, date posted, and number of likes (lists them latest to oldest)
 
-![list](documentation/list.png)
-
-/list/slug - page for showing specific shopping list
-
-![list](documentation/list-slug.png)
+![postspage](documentation/postspage.png)
 
 ## Site map
 
-(__TODO__: draw out a site map that shows how pages are related to each other)
+It is yet to be modified as I proceed with this project, as I proceed with the project and sophisticate the codebase.
 
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
+![sitemap](documentation/sitemap.png)
 
 ## User Stories or Use Cases
 
@@ -115,10 +111,9 @@ I am planning to fulfill 10 points total out of 10 required points.
 
 ## [Link to Initial Main Project File](app.mjs) 
 
-(__TODO__: create a skeleton Express application with a `views` folder and routing in app.mjs and link to your initial app.mjs)
+Please follow the link to view the codebase for `app.mjs`.
 
 ## Annotations / References Used
 
-(__TODO__: list any tutorials/references/etc. that you've based your code off of)
-
-
+So far I have not yet followed any tutorials and references yet.
+I will consult outside resources later, especially when researching the topics!
