@@ -24,7 +24,7 @@ const Article = new mongoose.Schema({
 const Post = new mongoose.Schema({
     title: {type: String, required: true},
     content: {type: String, required: true},
-    writtenBy: {type: ObjectID, required: true},
+    writtenBy: {type: ObjectId, required: true},
     //photo: {} Possibly add screenshots or graphics into an article?
     views: {type: Number, required: true},
     likes: {type: Number, required: true},
@@ -34,7 +34,7 @@ const Post = new mongoose.Schema({
 
 const Comment = new mongoose.Schema({
     content: {type: String, required: true},
-    writtenBy: {type: ObjectID, required: true},
+    writtenBy: {type: ObjectId, required: true},
     likes: {type: Number, required: true},
     uploadedTime: {type: Date, required: true},
     reaction: {type: String, required: false}, // An optional emoji
