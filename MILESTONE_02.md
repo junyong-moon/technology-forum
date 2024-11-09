@@ -27,21 +27,16 @@ URL for form result
 URL to github that shows line of code where research topic(s) are used / implemented
 --- 
 I implemented tailwind CSS for a research topic. It is implemented in each hbs file.
-For the representativeness of the layout file, please refer to the ![layout.hbs](views/layout.hbs) file.
+For the representativeness of the layout file, please refer to the [layout.hbs](views/layout.hbs) file.
 
 References 
 ---
-* https://mherman.org/blog/local-authentication-with-passport-and-express-4/
-  Tutorial for authentification
+* [Tutorial for authentification](https://mherman.org/blog/local-authentication-with-passport-and-express-4/)
+  
+* [Reference for Mongoose Slug Plugin](https://www.npmjs.com/package/mongoose-slug-plugin)
 
-* https://www.npmjs.com/package/mongoose-slug-plugin
-  Reference for Mongoose Slug Plugin
+* [Reference for searching text in mongoose](https://www.geeksforgeeks.org/how-to-do-a-full-text-search-in-mongodb-using-mongoose/)
 
-* https://www.geeksforgeeks.org/how-to-do-a-full-text-search-in-mongodb-using-mongoose/
-  Reference for searching text in mongoose
+* [Tutorial for installing Tailwind CSS](https://tailwindcss.com/docs/installation)
 
-* https://tailwindcss.com/docs/installation
-  Tutorial for installing Tailwind CSS
-
-* https://tailwindcss.com/docs/utility-first
-  Reference for basic Tailwind CSS syntax
+* [Reference for basic Tailwind CSS syntax](https://tailwindcss.com/docs/utility-first)
