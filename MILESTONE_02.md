@@ -13,15 +13,16 @@ There are two forms: one for creating post and one for searching posts by titles
 
 URL for deployed site 
 ---
-(TODO: add url for your dpeloyed site; should be in this format http://linserv1.cims.nyu.edu:YOUR_PORT_NUMBER)
+http://linserv1.cims.nyu.edu:29249
 
 URL for form 
 ---
-(TODO: add link to a functioning form)
+![Form for searching (registration not needed)](http://linserv1.cims.nyu.edu:29249/posts)
+![Form for posting (registration needed)](http://linserv1.cims.nyu.edu:29249/posts/add)
 
 URL for form result
 ---
-(TODO: if applicable, add link to page that shows results of submitting form)
+![Form result after searching or posting (Posts lists page)](http://linserv1.cims.nyu.edu:29249/posts)
 
 URL to github that shows line of code where research topic(s) are used / implemented
 --- 
