@@ -6,3 +6,14 @@
     User Posts
 </h2>
 
+<a href="posts/add">
+    <div class="button">
+        Write a post
+    </div>
+<a>
+
+<ol>
+    {{#each posts}}
+    <li><a href="/posts/{{slug}}">{{title}}<a></li>
+    {{/each}}
+</ol>

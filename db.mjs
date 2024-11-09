@@ -1,42 +1,51 @@
 import { ObjectId } from 'bson';
 import mongoose from 'mongoose';
+import passportLocalMongoose from 'passport-local-mongoose';
+import mongooseSlugPlugin from 'mongoose-slug-plugin';
 
 mongoose.connect(process.env.DSN)
 
-const User = new mongoose.Schema({
-    username: {type: String, required: true},
-    hash: {type: String, required: true},
-    email: {type: String, required: true},
-    registrationDate: {type: Date, required: true},
-    postReacted: {type: Array, required: true}
-});
+const UserSchema = new mongoose.Schema({
+    username: String,
+    salt: String,
+    hash: String,
+    email: String,
+    // postReacted: {type: Array, required: true},
+    // permission: {type: Number, required: true}
+}, {timestamps: true});
 
-const Article = new mongoose.Schema({
+const ArticleSchema = new mongoose.Schema({
     title: {type: String, required: true},
     content: {type: String, required: true},
     //photo: {} Possibly add screenshots or graphics into an article?
     views: {type: Number, required: true},
     likes: {type: Number, required: true},
-    uploadedTime: {type: Date, required: true},
     comments: {type: Array, required: true} // Is there a way to put a array of a specific type?
-});
+}, {timestamps: true});
 
-const Post = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
     title: {type: String, required: true},
     content: {type: String, required: true},
-    writtenBy: {type: ObjectId, required: true},
+    writtenBy: {type: ObjectId, required: true, ref: 'User'},
     //photo: {} Possibly add screenshots or graphics into an article?
     views: {type: Number, required: true},
     likes: {type: Number, required: true},
-    uploadedTime: {type: Date, required: true},
     comments: {type: Array, required: true} // Is there a way to put a array of a specific type?
-})
+}, {timestamps: true})
 
-const Comment = new mongoose.Schema({
+const CommentSchema = new mongoose.Schema({
     content: {type: String, required: true},
     writtenBy: {type: ObjectId, required: true},
     likes: {type: Number, required: true},
     uploadedTime: {type: Date, required: true},
-    reaction: {type: String, required: false}, // An optional emoji
+    reaction: String, // An optional emoji
     replies: {type: Array, required: true}, // This may be challenging bc it needs recursion
-});
+}, {timestamps: true});
+
+UserSchema.plugin(passportLocalMongoose);
+PostSchema.plugin(mongooseSlugPlugin, {tmpl: '<%=title%>'});
+
+mongoose.model('User', UserSchema);
+mongoose.model('Article', ArticleSchema);
+mongoose.model('Post', PostSchema);
+mongoose.model('Comment', CommentSchema);

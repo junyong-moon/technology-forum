@@ -115,5 +115,8 @@ Please follow the link to view the codebase for `app.mjs`.
 
 ## Annotations / References Used
 
-So far I have not yet followed any tutorials and references yet.
-I will consult outside resources later, especially when researching the topics!
+* https://mherman.org/blog/local-authentication-with-passport-and-express-4/
+  Tutorial for authentification
+
+* https://www.npmjs.com/package/mongoose-slug-plugin
+  Reference for Mongoose Slug Plugin

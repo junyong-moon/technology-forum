@@ -1,0 +1,25 @@
+<h1 class="centering">
+    Techonology Forum
+<h1>
+
+<h2 class="centering">
+    Login
+</h2>
+
+<p>Please <a href="/register">register</a> if you do not have an account!</p>
+
+<form method="POST" action="login">
+    <div>
+        <label for="username">Username: </label>
+        <input type="text" name="username" value="">
+    </div>
+    <div>
+        <label for="password">Password: </label>
+        <input type="password" name="password" value="">      
+    </div>
+    <div>
+        <input type="submit" value="login">
+    </div>
+
+    <p class="error-msg">{{message}}<p>
+</form>

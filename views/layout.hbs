@@ -3,25 +3,28 @@
 <head>
     <meta charset="utf-8">
     <title>Technology Forum</title>
+    <link rel="stylesheet" type="text/css" href="/public/main.css">
 </head>
 <body>
-    <link rel="stylesheet" type="text/css" href="public/main.css">
-<nav>
 
-</nav>
-<span class="nav-left">
-    <a href="/">Home</a>
-    <a href="/news">Newsstand</a>
-    <a href="/posts">Posts</a>
-</span>
-<span class="nav-right">
-    Login
-</span>
+<nav>
+    <span class="nav-left">
+        <a href="/">Home</a>
+        <a href="/news">Newsstand</a>
+        <a href="/posts">Posts</a>
+    </span>
+    <span class="nav-right">
+        {{#if user}}
+            Logged in as: {{user.username}}
+            <a href="/logout">logout</a>
+        {{else}}
+            <a href="/login">Login</a>
+        {{/if}}
+    </span>
+</nav> <br />
+
 
 {{{body}}}
 
-<h3 class="centering">
-    Currently under work...
-</h3>
 </body>
 </html>
