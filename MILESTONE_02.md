@@ -25,7 +25,7 @@ URL for form result
 
 URL to github that shows line of code where research topic(s) are used / implemented
 --- 
-I implemented tailwind CSS, it is implemented each hbs file.
+I implemented tailwind CSS for a research topic. It is implemented in each hbs file.
 For the representativeness of the layout file, please refer to the ![layout.hbs](views/layout.hbs) file.
 
 References 
