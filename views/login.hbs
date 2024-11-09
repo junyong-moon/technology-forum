@@ -1,24 +1,20 @@
-<h1 class="centering">
-    Techonology Forum
-<h1>
-
-<h2 class="centering">
+<h2 class="text-center text-2xl font-semibold py-2">
     Login
 </h2>
 
-<p>Please <a href="/register">register</a> if you do not have an account!</p>
+<p>Please <a class="text-blue-400 hover:font-medium" href="/register">register</a> if you do not have an account!</p>
 
-<form method="POST" action="login">
-    <div>
+<form class="pl-2 pt-1" method="POST" action="login">
+    <div class="py-1">
         <label for="username">Username: </label>
-        <input type="text" name="username" value="">
+        <input class="border-2 rounded-sm border-black" type="text" name="username" value="">
     </div>
-    <div>
+    <div class="py-1">
         <label for="password">Password: </label>
-        <input type="password" name="password" value="">      
+        <input class="border-2 rounded-sm border-black" type="password" name="password" value="">      
     </div>
-    <div>
-        <input type="submit" value="login">
+    <div class="py-1">
+        <input class="border-2 rounded-sm border-black p-1 bg-slate-200 hover:bg-slate-300" type="submit" value="login">
     </div>
 
     <p class="error-msg">{{message}}<p>

@@ -3,26 +3,29 @@
 <head>
     <meta charset="utf-8">
     <title>Technology Forum</title>
-    <link rel="stylesheet" type="text/css" href="/public/main.css">
+    <link rel="stylesheet" type="text/css" href="/output.css">
 </head>
 <body>
 
-<nav>
-    <span class="nav-left">
-        <a href="/">Home</a>
-        <a href="/news">Newsstand</a>
-        <a href="/posts">Posts</a>
+<nav class="px-4 pt-1 bg-teal-100">
+    <span class="float-left">
+        <a class="font-medium hover:font-semibold pr-1" href="/">Home</a>
+        <a class="font-medium hover:font-semibold pr-1" href="/news">Newsstand</a>
+        <a class="font-medium hover:font-semibold pr-1" href="/posts">Posts</a>
     </span>
-    <span class="nav-right">
+    <span class="float-right">
         {{#if user}}
             Logged in as: {{user.username}}
-            <a href="/logout">logout</a>
+            <a class="text-blue-400 hover:font-medium" href="/logout">logout</a>
         {{else}}
-            <a href="/login">Login</a>
+            <a class="text-blue-400 hover:font-medium" href="/login">Login</a>
         {{/if}}
     </span>
 </nav> <br />
 
+<h1 class="text-center text-4xl font-bold py-2">
+    Techonology Forum
+<h1>
 
 {{{body}}}
 

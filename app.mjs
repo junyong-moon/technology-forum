@@ -11,6 +11,12 @@ import passport from 'passport';
 import { fileURLToPath } from 'url';
 import path from 'path'
 
+/*  * TODOS (for milestone 2): 
+    * Deploy into Courant Server
+    * Complete MILESTONE_02.md
+*/  
+
+
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -72,9 +78,15 @@ app.get('/news', (req, res) => {
     res.render('news', {});
 });
 
-app.get('/posts', async (req, res) => {
 
-    const posts = await Post.find({}).sort("-createdAt").exec();
+app.get('/posts', async (req, res) => {
+    const filterObj = {};
+
+    if (req.query.searchQuery) {
+        filterObj["$text"] = { $search: req.query.searchQuery };
+    }
+
+    const posts = await Post.find(filterObj).sort("-createdAt").exec();
 
     res.render('posts', {posts});
 });
@@ -82,7 +94,6 @@ app.get('/posts', async (req, res) => {
 app.get('/posts/add', (req, res) => {
     res.render('createPost', {});
 })
-
 
 // DOTO: Add slug to avoid collisions for duplicates
 app.post('/posts/add', async (req, res) => {
@@ -136,14 +147,14 @@ app.get('/logout', (req, res) => {
     });
 })
 
-
 app.get('/register', (req, res) => {
     res.render('register', {});
 });
 
 // TODO: Add a logic to check if the username and password is valid (Also check email)
+//       Display error message
 app.post('/register', (req, res) => {
-    console.log(req.body.username);
+
     User.register(new User({username:req.body.username, email: req.body.email}), 
         req.body.password, function (err, user) {
       if (err) {

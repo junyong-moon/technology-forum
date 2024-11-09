@@ -120,3 +120,12 @@ Please follow the link to view the codebase for `app.mjs`.
 
 * https://www.npmjs.com/package/mongoose-slug-plugin
   Reference for Mongoose Slug Plugin
+
+* https://www.geeksforgeeks.org/how-to-do-a-full-text-search-in-mongodb-using-mongoose/
+  Reference for searching text in mongoose
+
+* https://tailwindcss.com/docs/installation
+  Tutorial for installing Tailwind CSS
+
+* https://tailwindcss.com/docs/utility-first
+  Reference for basic Tailwind CSS syntax

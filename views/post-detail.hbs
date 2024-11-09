@@ -1,21 +1,17 @@
-<h1 class="centering">
-    Techonology Forum
-<h1>
-
-<h2 class="centering">
-    {{requestedPost.title}}
+<h2 class="text-center text-2xl font-semibold py-2">
+    Title: {{requestedPost.title}}
 </h2>
 
-<h3 class="centering">
+<h3 class="text-center text-lg">
     written by: {{requestedPost.writtenBy.username}}
 </h3>
 
-<div class="text-float-right">
+<div class="float-right pr-4">
     Uploaded at: {{ uploadedTime }}
 </div>
 
 <br /> <br />
 
-<div class="content">
+<div class="px-20 text-sm">
     {{requestedPost.content}}
 </div>
