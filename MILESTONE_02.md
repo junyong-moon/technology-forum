@@ -17,12 +17,12 @@ http://linserv1.cims.nyu.edu:29249
 
 URL for form 
 ---
-![Form for searching (registration not needed)](http://linserv1.cims.nyu.edu:29249/posts)
-![Form for posting (registration needed)](http://linserv1.cims.nyu.edu:29249/posts/add)
+[Form for searching (registration not needed)](http://linserv1.cims.nyu.edu:29249/posts)
+[Form for posting (registration needed)](http://linserv1.cims.nyu.edu:29249/posts/add)
 
 URL for form result
 ---
-![Form result after searching or posting (Posts lists page)](http://linserv1.cims.nyu.edu:29249/posts)
+[Form result after searching or posting (Posts lists page)](http://linserv1.cims.nyu.edu:29249/posts)
 
 URL to github that shows line of code where research topic(s) are used / implemented
 --- 
