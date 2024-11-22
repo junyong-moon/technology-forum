@@ -156,18 +156,6 @@ app.post('/posts/:slug/comments-add', async (req, res) => {
         // TODO: display an error msg when the comment is empty
     }
 
-    const updatedPost = 
-        await Post.findOne({ slug: req.params.slug })
-                    .populate('writtenBy')
-                    .populate({
-                        path: 'comments',
-                        populate: {
-                            path: 'writtenBy',
-                            model: 'User'
-                        }
-                    })
-                    .exec();
-
     res.redirect('/posts/' + req.params.slug)
 });
 
@@ -203,7 +191,7 @@ app.get('/register', (req, res) => {
 //       Display error message
 app.post('/register', (req, res) => {
 
-    User.register(new User({username:req.body.username, email: req.body.email}), 
+    User.register(new User({ username:req.body.username, email: req.body.email, isAdmin: 0 }), 
         req.body.password, function (err, user) {
       if (err) {
           console.log(err);
