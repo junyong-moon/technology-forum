@@ -12,12 +12,12 @@ When registering, there is not yet a special rules (e.g. least length of 8) for 
 Also, the input for email has the type of "email," meaning that the input must have '@' and trailing letters.
 
 There are two forms:
-- creating post (which requires registration) 
 - searching posts by titles (no registration needed)
+- creating post (requires registration) 
 
 URL for deployed site 
 ---
-http://linserv1.cims.nyu.edu:29249
+* http://linserv1.cims.nyu.edu:29249
 
 URL for form 
 ---

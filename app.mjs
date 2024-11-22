@@ -11,9 +11,11 @@ import passport from 'passport';
 import { fileURLToPath } from 'url';
 import path from 'path'
 
-/*  * TODOS (for milestone 2): 
-    * Deploy into Courant Server
-    * Complete MILESTONE_02.md
+/*  * TODOS (for milestone 3):
+    Move codebase into src or some folder
+    Consider refactoring from using handlebar?
+    Make a progress on research for build tools
+    Add ajax interaction (possibly comments or likes or a chatroom)
 */  
 
 
