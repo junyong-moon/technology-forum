@@ -31,4 +31,6 @@ URL(s) to github repository with commits that show progress on research
 
 References 
 ---
+[Populating Nested Objects](https://stackoverflow.com/questions/19222520/populate-nested-array-in-mongoose)
+
 (TODO: if applicable, links to annotated lines of code in github repository that were based off of tutorials / articles / sample projects)

@@ -12,12 +12,9 @@ import { fileURLToPath } from 'url';
 import path from 'path'
 
 /*  * TODOS (for milestone 3):
-    Move codebase into src or some folder
-    Consider refactoring from using handlebar?
     Make a progress on research for build tools
     Add ajax interaction (possibly comments or likes or a chatroom)
 */  
-
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -30,6 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 
 const User = mongoose.model("User");
 const Post = mongoose.model("Post");
+const Comment = mongoose.model("Comment");
 
 const authRequiredPaths = ['/posts/add'];
 
@@ -97,7 +95,6 @@ app.get('/posts/add', (req, res) => {
     res.render('createPost', {});
 })
 
-// DOTO: Add slug to avoid collisions for duplicates
 app.post('/posts/add', async (req, res) => {
     console.log(req.body); //DEBUG
 
@@ -118,16 +115,65 @@ app.post('/posts/add', async (req, res) => {
 
 app.get('/posts/:slug', async (req, res) => {
     
-    const requestedPost = await Post.findOne({ slug: req.params.slug }).populate('writtenBy').exec();
-    const uploadedTime = requestedPost.createdAt.toString().slice(0, 25);
+    const requestedPost = 
+        await Post.findOne({ slug: req.params.slug })
+                    .populate('writtenBy')
+                    .populate({
+                        path: 'comments',
+                        populate: {
+                            path: 'writtenBy',
+                            model: 'User'
+                        }
+                    })
+                    .exec();
 
-    res.render('post-detail', { requestedPost, uploadedTime });
-})
+    const uploadedTime = requestedPost.createdAt.toString().slice(0, 25);
+    const userID = res.locals.user ? res.locals.user.username : null;
+
+    res.render('post-detail', { requestedPost, uploadedTime, userID });
+});
+
+app.post('/posts/:slug/comments-add', async (req, res) => {
+
+    // TODO: Assert that the session is logged in
+
+    const requestedPost = await Post.findOne({ slug: req.params.slug });
+    const uploadedTime = requestedPost.createdAt.toString().slice(0, 25);
+    const userID = res.locals.user ? res.locals.user.username : null;
+    
+    if (req.body.comment) {
+        const newComment = new Comment({
+            content: req.body.comment,
+            writtenBy: res.locals.user._id,
+        });
+
+        await newComment.save();
+        requestedPost.comments.push(newComment._id);
+        await requestedPost.save();
+    
+    } else {
+        // TODO: display an error msg when the comment is empty
+    }
+
+    const updatedPost = 
+        await Post.findOne({ slug: req.params.slug })
+                    .populate('writtenBy')
+                    .populate({
+                        path: 'comments',
+                        populate: {
+                            path: 'writtenBy',
+                            model: 'User'
+                        }
+                    })
+                    .exec();
+
+    // TODO: use redirect (How to pass objects then?)
+    res.render('post-detail', { requestedPost: updatedPost, uploadedTime, userID }); 
+});
 
 app.get('/login', (req, res) => {
     res.render('login', {})
 });
-
 
 // TODO: Add a logic to check login info; e.g. check if the ID exist, check if the password is correct, etc.
 app.post('/login', (req, res, next) => { 
