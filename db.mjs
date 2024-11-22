@@ -10,7 +10,8 @@ const UserSchema = new mongoose.Schema({
     salt: String,
     hash: String,
     email: String,
-    // postReacted: {type: Array, required: true},
+    isAdmin: Number // 0 for user, 1 for admin
+    // postReacted: [{type: ObjectId, ref: 'Posts'}],
     // permission: {type: Number, required: true}
 }, {timestamps: true});
 
@@ -20,7 +21,7 @@ const ArticleSchema = new mongoose.Schema({
     //photo: {} Possibly add screenshots or graphics into an article?
     views: {type: Number, required: true},
     likes: {type: Number, required: true},
-    comments: [{ type: ObjectId, ref: 'Comment' }] // Is there a way to put a array of a specific type?
+    comments: [{ type: ObjectId, ref: 'Comment' }]
 }, {timestamps: true});
 
 const PostSchema = new mongoose.Schema({
@@ -30,7 +31,7 @@ const PostSchema = new mongoose.Schema({
     //photo: {} Possibly add screenshots or graphics into an article?
     views: {type: Number, required: true},
     likes: {type: Number, required: true},
-    comments: [{ type: ObjectId, ref: 'Comment' }] // Is there a way to put a array of a specific type?
+    comments: [{ type: ObjectId, ref: 'Comment' }]
 }, {timestamps: true})
 
 const CommentSchema = new mongoose.Schema({

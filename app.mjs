@@ -13,7 +13,8 @@ import path from 'path'
 
 /*  * TODOS (for milestone 3):
     Make a progress on research for build tools
-    Add ajax interaction (possibly comments or likes or a chatroom)
+    Add ajax interaction (possibly likes or chats)
+    Add Newsstand
 */  
 
 const app = express();
@@ -96,7 +97,6 @@ app.get('/posts/add', (req, res) => {
 })
 
 app.post('/posts/add', async (req, res) => {
-    console.log(req.body); //DEBUG
 
     const newPost = new Post({
         title: req.body.title,
@@ -109,8 +109,9 @@ app.post('/posts/add', async (req, res) => {
 
     //consider adding catching errors
     await newPost.save();
+    const slug = newPost.slug;
 
-    res.redirect('/posts'); // TODO: Should redirect to the new post written
+    res.redirect('/posts/' + slug);
 })
 
 app.get('/posts/:slug', async (req, res) => {
@@ -167,8 +168,7 @@ app.post('/posts/:slug/comments-add', async (req, res) => {
                     })
                     .exec();
 
-    // TODO: use redirect (How to pass objects then?)
-    res.render('post-detail', { requestedPost: updatedPost, uploadedTime, userID }); 
+    res.redirect('/posts/' + req.params.slug)
 });
 
 app.get('/login', (req, res) => {
