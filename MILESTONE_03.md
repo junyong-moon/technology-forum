@@ -16,20 +16,22 @@ URL for form 1 (from previous milestone)
 
 Special Instructions for Form 1
 ---
-For login, please use:
+For login, please use the following account:
 - id: superuser
 - password: PASSword1!
 
 URL for form 2 (for current milestone)
 ---
-(TODO: choose a specific post to use)
-* [Form for adding a comment (login needed)](http://linserv1.cims.nyu.edu:29249/posts/)
+* [Form for adding a comment (login needed)](http://linserv1.cims.nyu.edu:29249/posts/please-test-post-requests-here)
 
 Special Instructions for Form 2
 ---
-For login, please use:
+For login, please use the following account:
 - id: superuser
 - password: PASSword1!
+
+After login, please navigate to Posts section (in the top navigation bar),
+then find a post named 'Please test POST requests here.' Thanks! 
 
 URL(s) to github repository with commits that show progress on research
 --- 
