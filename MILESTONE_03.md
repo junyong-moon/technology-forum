@@ -47,10 +47,15 @@ Also, here is a sample result of the unit testing: ![jest-result](documentation/
 
 References 
 ---
-[Jest Tutorial](https://jestjs.io/docs/getting-started)
+- [Jest Tutorial](https://jestjs.io/docs/getting-started)
+    * Used in [the testing set](test/test.js)
 
-[Populating Nested Objects](https://stackoverflow.com/questions/19222520/populate-nested-array-in-mongoose)
+- [Populating Nested Objects](https://stackoverflow.com/questions/19222520/populate-nested-array-in-mongoose)
+    * Used in the line 120 in [app.mjs](app.mjs)
 
-[Regex testing for username](https://stackoverflow.com/questions/336210/regular-expression-for-alphanumeric-and-underscores)
+- [Regex testing for username](https://stackoverflow.com/questions/336210/regular-expression-for-alphanumeric-and-underscores)
+    * Used in [Validation for registration](regiValidation.mjs)
 
-[Using Jest with ESModule enabled](https://stackoverflow.com/questions/35756479/does-jest-support-es6-import-export)
+- [Using Jest with ESModule enabled](https://stackoverflow.com/questions/35756479/does-jest-support-es6-import-export)
+    * It allowed me to use `import` in test.js
+    * Configuration made in [package.json (lines 7-12)](package.json)
