@@ -20,6 +20,13 @@ For login, please use the following account:
 - id: superuser
 - password: PASSword1!
 
+If you want to register, please make sure that:
+- The username has at least 6 letters which may be alphanumerical or underscores
+- The username does not have the leading underscore (for example, `_username`)
+- The username has up to two underscores
+- The password has at least 8 letters
+- The password has at least one of each: uppercase, lowercase, number, and special letters like `!` or `$`
+
 URL for form 2 (for current milestone)
 ---
 * [Form for adding a comment (login needed)](http://linserv1.cims.nyu.edu:29249/posts/please-test-post-requests-here)
