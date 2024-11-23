@@ -634,6 +634,11 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.px-40 {
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -701,6 +706,11 @@ video {
 .text-blue-400 {
   --tw-text-opacity: 1;
   color: rgb(96 165 250 / var(--tw-text-opacity));
+}
+
+.text-orange-600 {
+  --tw-text-opacity: 1;
+  color: rgb(234 88 12 / var(--tw-text-opacity));
 }
 
 .text-white {

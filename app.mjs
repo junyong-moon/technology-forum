@@ -1,6 +1,7 @@
 import './config.mjs';
 import './db.mjs';
 import './auth.mjs';
+import { usernameValid, passwordValid } from './regiValidation.mjs';
 import * as auth from "./auth.mjs";
 
 import express from 'express'
@@ -128,16 +129,26 @@ app.get('/posts/:slug', async (req, res) => {
                     })
                     .exec();
 
+
+    // Parsing time information of the post
     const uploadedTime = requestedPost.createdAt.toString().slice(0, 25);
+
+    // Checks if the user is logged in (used for comment section)
     const userID = res.locals.user ? res.locals.user.username : null;
 
-    res.render('post-detail', { requestedPost, uploadedTime, userID });
+    // Parsing time information of each comment
+    const postComments = requestedPost.comments.map(obj => {
+        // TODO: This makes extra duplicate information... is there a why to avoid this?
+        obj.uploadedTime = obj.createdAt.toString().slice(0,25); 
+        return obj;
+    })
+
+    res.render('post-detail', { requestedPost, uploadedTime, userID, postComments });
 });
 
 app.post('/posts/:slug/comments-add', async (req, res) => {
 
     // TODO: Assert that the session is logged in
-
     const requestedPost = await Post.findOne({ slug: req.params.slug });
     const uploadedTime = requestedPost.createdAt.toString().slice(0, 25);
     const userID = res.locals.user ? res.locals.user.username : null;
@@ -187,21 +198,30 @@ app.get('/register', (req, res) => {
     res.render('register', {});
 });
 
-// TODO: Add a logic to check if the username and password is valid (Also check email)
-//       Display error message
+// TODO: Modify the register page that the user have to type password twice
+//       Also add instruction of choosing username and password
 app.post('/register', (req, res) => {
 
-    User.register(new User({ username:req.body.username, email: req.body.email, isAdmin: 0 }), 
+    if (!usernameValid(req.body.username)) {
+        res.render('register', {message: "Please review if your username follows the naming rules"});
+        return;
+    } else if (!passwordValid(req.body.password)) {
+        res.render('register', {message: "Please review if your password has at least 8 letters with valid combinations"});
+        return;
+    }
+
+    const newUsername = req.body.username.toLowerCase();
+
+    User.register(new User({ username: newUsername, email: req.body.email, isAdmin: 0 }), 
         req.body.password, function (err, user) {
       if (err) {
-          console.log(err);
-        res.render('register', {message: 'Your registration information is not valid'});
+        res.render('register', {message: err.message});
       }
 
         passport.authenticate('local')(req, res, function () {
             res.redirect('/');
         });
     });   
-  });
+});
 
 app.listen(process.env.PORT ?? 3000);

@@ -18,4 +18,9 @@
     <div class="py-1">
         <input class="border-2 rounded-sm border-black p-1 bg-slate-200 hover:bg-slate-300" type="submit" value="register">
     </div>
+    {{#if message}}
+    <div class="py-2">
+        <p class="text-lg text-orange-600">{{message}}</p>
+    </div>
+    {{/if}}
 </form>
