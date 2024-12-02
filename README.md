@@ -103,9 +103,10 @@ It is yet to be modified as I proceed with this project, as I proceed with the p
 Here is a tentative list of research that I would like to explore:
 
 * (3 points) Unit testing with JavaScript (Implemented)
-* (3 points) Built tools / task runners such as vite, Webpack, along with:
-    * (2 points) Integrate ESLint into the workflow
+* ~~3 points) Built tools / task runners such as vite, Webpack, along with:~~
+* (2 points) Integrate ESLint into the workflow
 * (2 points) CSS framework or UI toolkit, use a reasonable of customization of the framework (Implemented, customization needed)
+* (3 points) Configuration management through `nconf` (Implemented)
 
 I am planning to fulfill 10 points total out of 10 required points.
 

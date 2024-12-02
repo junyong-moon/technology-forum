@@ -13,10 +13,12 @@ import nconf from 'nconf';
 import { fileURLToPath } from 'url';
 import path from 'path'
 
-/*  * TODOS (for milestone 3):
-    Make a progress on research for build tools
-    Add ajax interaction (possibly likes or chats)
+/*  * TODOS (for milestone 4):
+    Tweak Registration/Login:
+        During Regi it must check if the passwords are the same
+        For Regi display the rules for username and password (might be better if it shows it passes)
     Add Newsstand
+    Change the design for post/newsstand list 
 */  
 
 const app = express();
@@ -34,7 +36,7 @@ const Comment = mongoose.model("Comment");
 const Article = mongoose.model("Article");
 const Request = mongoose.model("Request");
 
-const authRequiredPaths = ['/posts/add', '/news/add', '/request-promote'];
+const authRequiredPaths = ['/posts/add', '/news/add', '/request-authorize'];
 
 const sessionOptions = {
 	secret: process.env.secret,
@@ -149,8 +151,6 @@ app.post('/request-authorize', async (req, res) => {
     const numPosts = posts.length;
     const numComments = comments.length;
 
-    // console.log(numPosts.length, numComments.length);
-
     const newRequest = new Request({
         username: userInfo.username,
         message: req.body.message,
@@ -161,7 +161,7 @@ app.post('/request-authorize', async (req, res) => {
     //consider adding catching errors
     await newRequest.save();
 
-    res.redirect('/request-authorize'); // Find a way to pass the object
+    res.redirect('/request-authorize');
 })
 
 // An admin page to set users to article-writers
