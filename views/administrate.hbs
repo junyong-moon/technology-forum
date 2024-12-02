@@ -1,0 +1,35 @@
+<h2 class="text-center text-2xl font-semibold py-2">
+    Approve Authorization Requests
+</h2>
+
+<h3 class="text-center text-lg font-semibold py-2">
+    Click "Approve" to grant authorization to the user.
+</h3>
+
+<div class="px-6">
+<table class="border-2 w-[1000px] border-gray-700 text-center mx-auto">
+    <tr class="border border-y-gray-700">
+        <th class="w-24">Username</th>
+        <th class="w-36">Register Date</th>
+        <th class="w-24">Posts</th>
+        <th class="w-24">Comments</th>
+        <th class="min-w-[32rem]">Message</th>
+        <th class="w-20">confirm</th>
+    </tr>
+{{#each requests}}
+    <tr class="border border-y-gray-700">
+        <td>{{username}}</td>
+        <td>{{registerDate}}</td>
+        <td>{{posts}}</td>
+        <td>{{comments}}</td>
+        <td class="text-sm">{{message}}</td>
+        <td>
+            <form method="POST" action="/administrate">
+                <input class="hidden" type="text" value="{{username}}" name="username">
+                <input class="border-2 rounded-sm border-black p-1 bg-slate-200 hover:bg-slate-300" type="submit" value="Approve">
+            </form>
+        </td>
+    </tr>
+{{/each}}
+</table>
+</div>

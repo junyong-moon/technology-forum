@@ -8,6 +8,7 @@ import express from 'express'
 import session from 'express-session';
 import mongoose from 'mongoose';
 import passport from 'passport';
+import nconf from 'nconf';
 
 import { fileURLToPath } from 'url';
 import path from 'path'
@@ -30,8 +31,10 @@ app.use(express.urlencoded({ extended: false }));
 const User = mongoose.model("User");
 const Post = mongoose.model("Post");
 const Comment = mongoose.model("Comment");
+const Article = mongoose.model("Article");
+const Request = mongoose.model("Request");
 
-const authRequiredPaths = ['/posts/add'];
+const authRequiredPaths = ['/posts/add', '/news/add', '/request-promote'];
 
 const sessionOptions = {
 	secret: process.env.secret,
@@ -51,7 +54,7 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     if (authRequiredPaths.includes(req.path)) {
         if (!res.locals.user) {
-            res.redirect('/login')
+            res.redirect('/login');
         } else {
             next();
         }
@@ -76,8 +79,128 @@ app.get('/', (req, res) => {
     res.render('home', {user: res.locals.user});
 });
 
-app.get('/news', (req, res) => {
-    res.render('news', {});
+app.get('/news', async (req, res) => {
+
+    const filterObj = {};
+
+    if (req.query.searchQuery) {
+        filterObj["$text"] = { $search: req.query.searchQuery };
+    }
+
+    const articles = await Article.find(filterObj).sort("-createdAt").exec();
+    res.render('news', {articles});
+});
+
+app.get('/news/add', async (req, res) => {
+    // Here we can possible use nconf to check if the user is athentificated as an article-writer
+    // Admins bypass this
+
+    // if not, redirect to a page to signup
+
+    // if yes, than render the form to write an article
+})
+
+app.get('/request-authorize', async (req, res) => {
+    // A user can request to promote oneself to an authorized, allowing one to write articles
+    // If a user is already authorized, display a message
+
+    nconf.argv()
+    .env()
+    .file({ file: './nconf/authorized-members.json' });
+
+    const renderObj = {};
+    const authorizedMembers = (nconf.get("members"));
+    const authorized = authorizedMembers.find(member => member === res.locals.user.username);
+    let requested = false;
+
+    if (!authorized) {
+        if (res.locals.user) {
+            const userInfo = await User.findOne({username: res.locals.user.username});
+            renderObj.created = userInfo.createdAt.toString().slice(0,15);
+            renderObj.userInfo = userInfo;
+    
+            const posts = await Post.find({ writtenBy: userInfo._id });
+            const comments = await Comment.find({ writtenBy: userInfo._id });
+            renderObj["numPosts"] = posts.length;
+            renderObj["numComments"] = comments.length;
+            
+            const requestInfo = await Request.find({username: res.locals.user.username});
+            if (requestInfo.length > 0) {
+                requested = true;
+            }
+        } else {
+            res.redirect("/login");
+        }
+    }
+
+    renderObj["authorized"] = authorized;
+    renderObj["requested"] = requested;
+    
+    res.render('request-authorize', renderObj);
+})
+
+app.post('/request-authorize', async (req, res) => {
+
+    // Retrieve the number of user posts and comments
+    const userInfo = await User.findOne({ username: res.locals.user.username });
+
+    const posts = await Post.find({ writtenBy: userInfo._id });
+    const comments = await Comment.find({ writtenBy: userInfo._id });
+    const numPosts = posts.length;
+    const numComments = comments.length;
+
+    // console.log(numPosts.length, numComments.length);
+
+    const newRequest = new Request({
+        username: userInfo.username,
+        message: req.body.message,
+        posts: numPosts,
+        comments: numComments,
+    })
+
+    //consider adding catching errors
+    await newRequest.save();
+
+    res.redirect('/request-authorize'); // Find a way to pass the object
+})
+
+// An admin page to set users to article-writers
+app.get('/administrate', async (req, res) => {
+
+    // if the users not admin, just redirect to the main page
+    if (!res.locals.user || !res.locals.user.isAdmin) { // Props it's better to check the actual db
+        res.redirect("/"); // This has an error
+    }
+
+    const requests = await Request.find();
+    const requestsRender = requests.map(request => {
+        request.registerDate = request.createdAt.toString().slice(4, 15);
+        return request;
+    })
+
+    res.render("administrate", { requests: requestsRender });
+});
+
+app.post('/administrate', async (req, res) => {
+
+    // if the users not admin, just redirect to the main page
+    if (!res.locals.user || !res.locals.user.isAdmin) { // Props it's better to check the actual db
+        res.redirect("/"); // This has an error
+    }
+
+    nconf.argv()
+    .env()
+    .file({ file: './nconf/authorized-members.json' });
+
+    // Add the user to the authorized list
+    const authorizedMembers = (nconf.get("members"));
+    authorizedMembers.push(req.body.username);
+    nconf.set("members", authorizedMembers);
+    nconf.save();
+
+    await Request.deleteOne({username: req.body.username});
+
+    res.redirect("/administrate");
 });
 
 
@@ -138,7 +261,7 @@ app.get('/posts/:slug', async (req, res) => {
 
     // Parsing time information of each comment
     const postComments = requestedPost.comments.map(obj => {
-        // TODO: This makes extra duplicate information... is there a why to avoid this?
+        // TODO: This makes extra duplicate information... is there a way to avoid this?
         obj.uploadedTime = obj.createdAt.toString().slice(0,25); 
         return obj;
     })

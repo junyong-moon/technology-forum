@@ -1,0 +1,48 @@
+<h2 class="text-center text-2xl font-semibold py-2">
+    Request Authorization
+</h2>
+
+{{#if authorized}}
+<h3 class="text-center text-lg font-semibold py-2">
+    You have already been authorized, congrats!
+</h3>
+
+
+{{else}}
+<h3 class="text-center text-lg font-semibold py-2">
+    Becoming an authorized member allows you to wrtie articles on newsstand.
+</h3>
+
+<h3 class="text-center text-lg font-semibold py-2">
+    Please use the form below to make a request, this will undergo a review by our administrators.
+</h3>
+
+    {{#if requested}}
+    <p class="text-center">
+        We have recieved your submission. It is undergoing a review, thank you for your patience.
+    </p>
+
+    {{else}}
+    <p class="text-center mt-3">
+        Here is the information that will be seen by our admins:
+    </p>
+    <ul class="text-center">
+        <li>Your username: {{userInfo.username}}</li>
+        <li>The reigstration date: {{created}}</li>
+        <li>Number of posts you posted: {{numPosts}}</li>
+        <li>Number of comments you posted: {{numComments}}</li>
+    </ul>
+    <p class="text-center my-2">
+        Please state what is your interest in technology and why would you like to write articles on Technology Forum (we appreciate it, first of all!).
+    </p>
+    <form method="POST" action="/request-authorize">
+        <div class="w-1/2 mx-auto">
+            <textarea class="border-2 rounded-sm border-black" name="message" rows="4" cols="64"></textarea>
+        </div>
+        <div class="w-9 mx-auto">
+            <input class="border-2 rounded-sm border-black p-1 bg-slate-200 hover:bg-slate-300" type="submit" placeholder="Comment here..." value="Submit">
+        </div>
+    </form>
+
+    {{/if}}
+{{/if}}

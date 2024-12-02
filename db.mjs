@@ -36,12 +36,20 @@ const PostSchema = new mongoose.Schema({
 
 const CommentSchema = new mongoose.Schema({
     content: {type: String, required: true},
-    writtenBy: {type: ObjectId, required: true},
+    writtenBy: {type: ObjectId, required: true, ref: 'User'},
     // likes: {type: Number, required: true},
     // uploadedTime: {type: Date, required: true},
     // reaction: String, // An optional emoji
     // replies: {type: Array, required: true}, // This may be challenging bc it needs recursion
 }, {timestamps: true});
+
+const requestSchema = new mongoose.Schema({
+    username: String,
+    registrationDate: Date,
+    posts: Number,
+    comments: Number,
+    message: String
+}, {timestamps: true})
 
 UserSchema.plugin(passportLocalMongoose);
 PostSchema.plugin(mongooseSlugPlugin, {tmpl: '<%=title%>'});
@@ -51,3 +59,4 @@ mongoose.model('User', UserSchema);
 mongoose.model('Article', ArticleSchema);
 mongoose.model('Post', PostSchema);
 mongoose.model('Comment', CommentSchema);
+mongoose.model('Request', requestSchema);
