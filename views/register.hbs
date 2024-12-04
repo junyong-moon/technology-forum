@@ -2,25 +2,46 @@
     Register
 </h2>
 
+<p class="text-center text-md pb-4">
+    Welcome to Technology Forum! We wish you have a great time with us!
+</p>
+
+<div class="m-auto my-2 w-[400px] border-2 border-black">
 <form class="pl-2 pt-1" method="POST" action="register">
-    <div class="py-1"> 
-        <label for="email">Your email: </label>
-        <input class="border-2 rounded-sm border-black" type="email" required name="email" value="">      
+    <div class="grid grid-cols-5 gap-2 p-3">
+        <label class="col-span-2" for="email">Your email: </label>
+        <input class="col-span-3 border-2 rounded-sm border-black" type="email" required name="email" value="">      
+        <label class="col-span-2" for="username">Username: </label>
+        <input class="col-span-3 border-2 rounded-sm border-black" type="text" name="username" value="">
+        <label class="col-span-2" for="password">Password: </label>
+        <input class="col-span-3 border-2 rounded-sm border-black" type="password" name="password" value="">      
+        <label class="col-span-2" for="confirmPassword">Confirm Password: </label>
+        <input class="col-span-3 border-2 rounded-sm border-black" type="password" name="confirmPassword" value="">     
     </div>
-    <div class="py-1">
-        <label for="username">Username: </label>
-        <input class="border-2 rounded-sm border-black" type="text" name="username" value="">
+    <div class="w-max m-auto mb-3">
+        <input class="border-2 rounded-sm border-black bg-slate-200 hover:bg-slate-300 w-[100px]" type="submit" value="register">
     </div>
-    <div class="py-1">
-        <label for="password">Password: </label>
-        <input class="border-2 rounded-sm border-black" type="password" name="password" value="">      
-    </div>
-    <div class="py-1">
-        <input class="border-2 rounded-sm border-black p-1 bg-slate-200 hover:bg-slate-300" type="submit" value="register">
-    </div>
-    {{#if message}}
-    <div class="py-2">
-        <p class="text-lg text-orange-600">{{message}}</p>
-    </div>
-    {{/if}}
 </form>
+</div>
+{{#if message}}
+<div class="pb-2 w-max m-auto">
+    <p class="text-lg text-orange-600">{{message}}</p>
+</div>
+{{/if}}
+<div class="p-2 border-2 border-black w-[450px] m-auto text-sm">
+    <h3 class="text-center text-lg font-semibold">Register Instructions</h3>
+    <div class="indent-2">
+    <p>The username must contain at least 8 letters.</p>
+    <p>The password must satisfy the following:</p>
+    <ul class="list-disc pl-6">
+        <li><p>It must contain at list 8 letters.</p></li>
+        <li><p>It must contain all of each:</p></li>
+        <ol class=" list-decimal pl-6">
+            <li>At least one letter of lowercase alphabet letters.</li>
+            <li>At least one letter of uppercase alphabet letters.</li>
+            <li>At least one letter of numbers.</li>
+            <li>At least one letter of special letters like ! or @.</li>
+        </ol>
+    </ul>
+    </div>
+</div>

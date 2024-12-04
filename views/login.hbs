@@ -2,20 +2,24 @@
     Login
 </h2>
 
-<p>Please <a class="text-blue-400 hover:font-medium" href="/register">register</a> if you do not have an account!</p>
+<p class="text-center">Please <a class="text-blue-400 hover:font-medium" href="/register">register</a> if you do not have an account!</p>
 
-<form class="pl-2 pt-1" method="POST" action="login">
-    <div class="py-1">
-        <label for="username">Username: </label>
-        <input class="border-2 rounded-sm border-black" type="text" name="username" value="">
-    </div>
-    <div class="py-1">
-        <label for="password">Password: </label>
-        <input class="border-2 rounded-sm border-black" type="password" name="password" value="">      
-    </div>
-    <div class="py-1">
-        <input class="border-2 rounded-sm border-black p-1 bg-slate-200 hover:bg-slate-300" type="submit" value="login">
-    </div>
+<div class="m-auto my-2 w-[300px] border-2 border-black">
+    <form method="POST" action="login">
+        <div class="grid grid-cols-3 gap-2 p-3">
+            <label for="username">Username: </label>
+            <input class="col-span-2 border-2 rounded-sm border-black" type="text" name="username" value="">
+            <label for="password">Password: </label>
+            <input class="col-span-2 border-2 rounded-sm border-black" type="password" name="password" value="">
+        </div>
+        <div class="w-max m-auto mb-3">
+            <input class="border-2 rounded-sm border-black bg-slate-200 hover:bg-slate-300 w-[100px]" type="submit" value="login">
+        </div> 
+    </form>
+</div>
 
+{{#if message}}
+<div class="pb-2 w-max m-auto">
     <p class="error-msg">{{message}}<p>
-</form>
+</div>
+{{/if}}

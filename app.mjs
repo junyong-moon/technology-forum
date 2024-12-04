@@ -322,7 +322,6 @@ app.get('/register', (req, res) => {
 });
 
 // TODO: Modify the register page that the user have to type password twice
-//       Also add instruction of choosing username and password
 app.post('/register', (req, res) => {
 
     if (!usernameValid(req.body.username)) {
@@ -330,6 +329,9 @@ app.post('/register', (req, res) => {
         return;
     } else if (!passwordValid(req.body.password)) {
         res.render('register', {message: "Please review if your password has at least 8 letters with valid combinations"});
+        return;
+    } else if (req.body.password !== req.body.confirmPassword) {
+        res.render('register', {message: "The given passwords do not match"});
         return;
     }
 
