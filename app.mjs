@@ -14,11 +14,9 @@ import { fileURLToPath } from 'url';
 import path from 'path'
 
 /*  * TODOS (for milestone 4):
-    Tweak Registration/Login:
-        During Regi it must check if the passwords are the same
-        For Regi display the rules for username and password (might be better if it shows it passes)
-    Add Newsstand
-    Change the design for post/newsstand list 
+    Change the design for post/newsstand list & the posting pages
+    Improve search
+    Add eslint!!!!!
 */  
 
 const app = express();
@@ -97,10 +95,93 @@ app.get('/news/add', async (req, res) => {
     // Here we can possible use nconf to check if the user is athentificated as an article-writer
     // Admins bypass this
 
-    // if not, redirect to a page to signup
+    nconf.argv()
+    .env()
+    .file({ file: './nconf/authorized-members.json' });
 
-    // if yes, than render the form to write an article
+    const username = res.locals.user.username
+    const authorizedMembers = nconf.get("members");
+    console.log(authorizedMembers, username);
+
+    const user = await User.findOne({username: username});
+
+    if (authorizedMembers.includes(username) || user.isAdmin) {
+        res.render('create-news', {});
+    } else {
+        res.redirect('/request-authorize')
+    }
 })
+
+app.post('/news/add', async (req, res) => {
+    
+    const newArticle = new Article({
+        title: req.body.title,
+        content: req.body.content,
+        views: 0,
+        likes: 0,
+        comments: []
+    })
+
+    //consider adding catching errors
+    await newArticle.save();
+    const slug = newArticle.slug;
+
+    res.redirect('/news/' + slug);
+})
+
+app.get('/news/:slug', async (req, res) => {
+    
+    const requestedArticle = 
+        await Article.findOne({ slug: req.params.slug })
+                    .populate({
+                        path: 'comments',
+                        populate: {
+                            path: 'writtenBy',
+                            model: 'User'
+                        }
+                    })
+                    .exec();
+
+
+    // Parsing time information of the article
+    const uploadedTime = requestedArticle.createdAt.toString().slice(0, 25);
+
+    // Checks if the user is logged in (used for comment section)
+    const userID = res.locals.user ? res.locals.user.username : null;
+
+    // Parsing time information of each comment
+    const comments = requestedArticle.comments.map(obj => {
+        // TODO: This makes extra duplicate information... is there a way to avoid this?
+        obj.uploadedTime = obj.createdAt.toString().slice(0,25); 
+        return obj;
+    })
+
+    res.render('news-detail', { requestedArticle, uploadedTime, userID, comments });
+});
+
+app.post('/news/:slug/comments-add', async (req, res) => {
+
+    // TODO: Assert that the session is logged in
+    const requestedArticle = await Article.findOne({ slug: req.params.slug });
+    // const uploadedTime = requestedArticle.createdAt.toString().slice(0, 25);
+    // const userID = res.locals.user ? res.locals.user.username : null;
+    
+    if (req.body.comment) {
+        const newComment = new Comment({
+            content: req.body.comment,
+            writtenBy: res.locals.user._id,
+        });
+
+        await newComment.save();
+        await requestedArticle.comments.push(newComment._id);
+        await requestedArticle.save();
+    
+    } else {
+        // TODO: display an error msg when the comment is empty
+    }
+
+    res.redirect('/news/' + req.params.slug);
+});
 
 app.get('/request-authorize', async (req, res) => {
     // A user can request to promote oneself to an authorized, allowing one to write articles
@@ -111,7 +192,7 @@ app.get('/request-authorize', async (req, res) => {
     .file({ file: './nconf/authorized-members.json' });
 
     const renderObj = {};
-    const authorizedMembers = (nconf.get("members"));
+    const authorizedMembers = nconf.get("members");
     const authorized = authorizedMembers.find(member => member === res.locals.user.username);
     let requested = false;
 
@@ -273,8 +354,8 @@ app.post('/posts/:slug/comments-add', async (req, res) => {
 
     // TODO: Assert that the session is logged in
     const requestedPost = await Post.findOne({ slug: req.params.slug });
-    const uploadedTime = requestedPost.createdAt.toString().slice(0, 25);
-    const userID = res.locals.user ? res.locals.user.username : null;
+    // const uploadedTime = requestedPost.createdAt.toString().slice(0, 25);
+    // const userID = res.locals.user ? res.locals.user.username : null;
     
     if (req.body.comment) {
         const newComment = new Comment({
@@ -283,7 +364,7 @@ app.post('/posts/:slug/comments-add', async (req, res) => {
         });
 
         await newComment.save();
-        requestedPost.comments.push(newComment._id);
+        await requestedPost.comments.push(newComment._id);
         await requestedPost.save();
     
     } else {

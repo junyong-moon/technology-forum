@@ -2,9 +2,9 @@
     Newsstand
 </h2>
 
-<a href="news/add">
+<a href="/news/add">
     <div class="block bg-slate-600 text-center text-white hover:bg-slate-500">
-        Write a post
+        Write a news article
     </div>
 <a>
 
@@ -15,7 +15,7 @@
 
     <ol>
         {{#each articles}}
-        <li><a class="hover:font-medium" href="/posts/{{slug}}">{{title}}<a></li>
+        <li><a class="hover:font-medium" href="/news/{{slug}}">{{title}}<a></li>
         {{/each}}
     </ol>
 </div>
