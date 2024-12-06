@@ -2,16 +2,20 @@
     Create a News Article
 </h2>
 
+<hr class="my-2">
+
 <form method="POST" action="">
-    <div>
+    <div class="w-max mx-auto pt-2">
         <label for="title">Title: </label>
-        <input class="border-2 rounded-sm border-black mb-2" type="text" name="title" value="">
+        <input class="border-2 rounded-sm border-black mb-2 w-[500px]" type="text" name="title" value="" required>
     </div>
-    <div>
+    <div class="w-max mx-auto">
         <label for="content">Content:</label><br />
-        <textarea class="border-2 rounded-sm border-black" name="content" rows="30" cols="120"></textarea>
+        <textarea class="border-2 rounded-sm border-black" name="content" rows="20" cols="80" required></textarea>
     </div>
-    <div>
+    <div class="w-max mx-auto">
         <input class="border-2 rounded-sm border-black p-1 bg-slate-200 hover:bg-slate-300" type="submit" value="Create News">
     </div>
 </form>
+
+<hr class="my-2">

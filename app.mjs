@@ -88,7 +88,12 @@ app.get('/news', async (req, res) => {
     }
 
     const articles = await Article.find(filterObj).sort("-createdAt").exec();
-    res.render('news', {articles});
+    const articleList = articles.map(article => {
+        const timeString = article.createdAt.toString()
+        article.postedTime = timeString.slice(4, 10) + timeString.slice(15, 21);
+        return article; 
+    })
+    res.render('news', {articles: articleList});
 });
 
 app.get('/news/add', async (req, res) => {
@@ -154,7 +159,9 @@ app.get('/news/:slug', async (req, res) => {
         // TODO: This makes extra duplicate information... is there a way to avoid this?
         obj.uploadedTime = obj.createdAt.toString().slice(0,25); 
         return obj;
-    })
+    });
+
+    await Article.updateOne({slug: req.params.slug}, {$inc: {views : 1}});
 
     res.render('news-detail', { requestedArticle, uploadedTime, userID, comments });
 });
@@ -292,9 +299,14 @@ app.get('/posts', async (req, res) => {
         filterObj["$text"] = { $search: req.query.searchQuery };
     }
 
-    const posts = await Post.find(filterObj).sort("-createdAt").exec();
+    const posts = await Post.find(filterObj).populate('writtenBy').sort("-createdAt").exec();
+    const postList = posts.map(post => {
+        const timeString = post.createdAt.toString();
+        post.postedTime = timeString.slice(4, 10) + timeString.slice(15, 21);
+        return post; 
+    })
 
-    res.render('posts', {posts});
+    res.render('posts', {posts: postList});
 });
 
 app.get('/posts/add', (req, res) => {
@@ -346,6 +358,8 @@ app.get('/posts/:slug', async (req, res) => {
         obj.uploadedTime = obj.createdAt.toString().slice(0,25); 
         return obj;
     })
+
+    await Post.updateOne({slug: req.params.slug}, {$inc: {views : 1}});
 
     res.render('post-detail', { requestedPost, uploadedTime, userID, postComments });
 });
