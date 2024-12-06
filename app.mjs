@@ -14,9 +14,10 @@ import { fileURLToPath } from 'url';
 import path from 'path'
 
 /*  * TODOS (for milestone 4):
-    Change the design for post/newsstand list & the posting pages
-    Improve search
+    Improve search feature
     Add eslint!!!!!
+    Add a unit test for Jest
+    Change MILESTONE_04.md and README.md
 */  
 
 const app = express();
@@ -34,7 +35,7 @@ const Comment = mongoose.model("Comment");
 const Article = mongoose.model("Article");
 const Request = mongoose.model("Request");
 
-const authRequiredPaths = ['/posts/add', '/news/add', '/request-authorize'];
+const authRequiredPaths = ['/posts/add', '/news/add', '/request-authorize', '/posts'];
 
 const sessionOptions = {
 	secret: process.env.secret,
@@ -52,7 +53,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-    if (authRequiredPaths.includes(req.path)) {
+    if (authRequiredPaths.includes(req.path) || req.path.startsWith('/posts/')) {
         if (!res.locals.user) {
             res.redirect('/login');
         } else {

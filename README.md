@@ -84,26 +84,24 @@ More features and pages will be added as I progress with the project.
 
 ## Site map
 
-It is yet to be modified as I proceed with this project, as I proceed with the project and sophisticate the codebase.
-
 ![sitemap](documentation/sitemap.png)
 
 ## User Stories or Use Cases
 
 1. As non-registered user, I can register a new account with the site
-  * Even as unregistered, I can read articles, but not user-written posts.
-  * Also I cannot like or dislike to a post before registration!
+  * Even as unregistered, I can read articles, but not user-written posts
 2. As a user, I can log in to the site
 3. As a user, I can react to articles, user-written posts, and comments
-4. As a user, I can write a post or a comment
-5. As a user, I can view the list of articles and posts that I liked or disliked
+4. As a user, I can view the list of articles and posts that I liked or disliked
+5. As a user, I can upload a request to become an authorized user
+  * As an authorized user, I can add a news article to the Newsstand
 
 ## Research Topics
 
 Here is a tentative list of research that I would like to explore:
 
 * (3 points) Unit testing with JavaScript (Implemented)
-* ~~3 points) Built tools / task runners such as vite, Webpack, along with:~~
+* ~~(3 points) Built tools / task runners such as vite, Webpack, along with:~~
 * (2 points) Integrate ESLint into the workflow
 * (2 points) CSS framework or UI toolkit, use a reasonable of customization of the framework (Implemented, customization needed)
 * (3 points) Configuration management through `nconf` (Implemented)
