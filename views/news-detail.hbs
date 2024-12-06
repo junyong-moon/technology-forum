@@ -1,0 +1,49 @@
+<div>
+    <h2 class="text-center text-2xl font-semibold py-2">
+        Title: {{requestedArticle.title}}
+    </h2>
+
+    {{!-- <h3 class="text-center text-lg">
+        written by: {{requestedArticle.writtenBy.username}}
+    </h3> --}}
+
+    <p class="float-right pr-4">
+        Uploaded at: {{ uploadedTime }}
+    </p>
+</div>
+
+<br /> <br />
+
+<div class="px-20 text-sm">
+    {{requestedArticle.content}}
+</div>
+
+<hr class="px-20 mt-24">
+
+<div class="px-40">
+    <h3 class="text-2xl font-semibold py-2">Comments</h3>
+</div>
+
+{{#if userID}}
+<form class="text-sm px-40 py-2" method="POST" action="/news/{{requestedArticle.slug}}/comments-add">
+    <div>
+        <p>Writing comment as: <span class="font-semibold">{{ userID }}</span></p>
+    </div>
+    <div>
+        <textarea class="border-2 rounded-sm border-black" name="comment" rows="4" cols="64"></textarea>
+    </div>
+    <div>
+        <input class="border-2 rounded-sm border-black p-1 bg-slate-200 hover:bg-slate-300" type="submit" placeholder="Comment here..." value="Add Comment">
+    </div>
+</form>
+{{/if}}
+
+{{#each comments}}
+    <hr class="pb-2">
+    <div class="px-40">
+        <p class="text-sm float-right">{{uploadedTime}}</p>
+        <p class="text-md font-semibold">{{writtenBy.username}}</p>
+        <p class="text-sm pb-1">{{content}}</p>
+    </div>
+{{/each}}
+<hr class="mb-24">
