@@ -19,7 +19,7 @@ http://linserv1.cims.nyu.edu:29249
 
 URL for form 1 (from previous milestone) 
 ---
-* [Form for searching (login not needed)](http://linserv1.cims.nyu.edu:29249/posts)
+* [Form for searching (login not needed)](http://linserv1.cims.nyu.edu:29249/news)
 * [Form for posting (login needed)](http://linserv1.cims.nyu.edu:29249/posts/add)
 
 Special Instructions for Form 1

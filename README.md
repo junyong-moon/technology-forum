@@ -2,7 +2,7 @@
 
 ## Overview
 
-Technology Forum is a community to share tech information and knowledge, for developers and technology enthusiasts. It is a simple website consisting of a newsstand--where administrators share news--and a forum--where users and post information/questions to the related topics. After registration, users are free to share their opinion and knowledge, as well as to rant about recent Apple product! Not only can they do this in a post, but they may do so in a comment, given that the language is appropriate. Also, should users agree (or disagree) to a post or a comment, they can like/dislike them.
+Technology Forum is a community to share tech information and knowledge, for developers and technology enthusiasts. It is a simple website consisting of a newsstand--where administrators and authorized users share news--and a forum--where users and post information/questions to the related topics. After registration, users are free to share their opinion and knowledge, as well as to rant about recent Apple product! Not only can they do this in a post, but they may do so in a comment, given that the language is appropriate.
 
 
 ## Data Model
@@ -10,8 +10,7 @@ Technology Forum is a community to share tech information and knowledge, for dev
 The application will store Users, Articles, (user-written) Posts, and Comments
 
 * Each user contains login/authentification credentials
-* Each article and post will have views, likes, and comments
-* Each comment will have likes and replies (i.e. a comment can reference to another comments)
+* Each article and post will have views and comments
 
 An Example User:
 ```javascript
@@ -30,11 +29,10 @@ An Example of Article:
 {
     title: // title of the article
     content: // the content of the article
-    //photo: Possibly add screenshots or graphics into an article?
     views: // the number of total views
-    likes: // the number of likes
-    uploadedTime: // timestamp
+    // likes: // the number of likes
     comments: // comments of the article
+    createdAt: // timestamp
 }
 ```
 
@@ -44,11 +42,10 @@ An Example of user-written Post:
     title: // title of the post
     content: // the content of the post
     writtenBy: // the ObjectID that points to the user
-    //photo: Possibly add screenshots or graphics into an article?
     views: 5,
-    likes: 1,
-    uploadedTime: // timestamp
+    // likes: 0,
     comments: // comments of the article
+    createdAt: // timestamp
 }
 ```
 
@@ -57,10 +54,7 @@ An Example of Comment:
 {
     content: // content of the comment
     writtenBy: // the ObjectID that points to the user
-    likes: 0,
-    replies: // an array of ObjectID that points to each comment
-    reaction: // An optional emoji or "sticker"
-    uploadedTime: // timestamp
+    createdAt: // timestamp
 }
 ```
 
@@ -79,6 +73,8 @@ More features and pages will be added as I progress with the project.
 ![newspage](documentation/newspage.png)
 
 /posts - displays post title, username, date posted, and number of likes (lists them latest to oldest)
+
+Access to this page requires registration.
 
 ![postspage](documentation/postspage.png)
 

@@ -17,6 +17,8 @@ import path from 'path'
     Improve search feature
     Add eslint!!!!!
     Add a unit test for Jest
+    Add error checking in the code
+    when accessing db _id attr shouldn't be passed
     Change MILESTONE_04.md and README.md
 */  
 

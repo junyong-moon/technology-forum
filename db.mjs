@@ -11,14 +11,11 @@ const UserSchema = new mongoose.Schema({
     hash: String,
     email: String,
     isAdmin: Number // 0 for user, 1 for admin
-    // postReacted: [{type: ObjectId, ref: 'Posts'}],
-    // permission: {type: Number, required: true}
 }, {timestamps: true});
 
 const ArticleSchema = new mongoose.Schema({
     title: {type: String, required: true},
     content: {type: String, required: true},
-    //photo: {} Possibly add screenshots or graphics into an article?
     views: {type: Number, required: true},
     likes: {type: Number, required: true},
     comments: [{ type: ObjectId, ref: 'Comment' }]
@@ -28,7 +25,6 @@ const PostSchema = new mongoose.Schema({
     title: {type: String, required: true},
     content: {type: String, required: true},
     writtenBy: {type: ObjectId, required: true, ref: 'User'},
-    //photo: {} Possibly add screenshots or graphics into an article?
     views: {type: Number, required: true},
     likes: {type: Number, required: true},
     comments: [{ type: ObjectId, ref: 'Comment' }]
@@ -37,10 +33,6 @@ const PostSchema = new mongoose.Schema({
 const CommentSchema = new mongoose.Schema({
     content: {type: String, required: true},
     writtenBy: {type: ObjectId, required: true, ref: 'User'},
-    // likes: {type: Number, required: true},
-    // uploadedTime: {type: Date, required: true},
-    // reaction: String, // An optional emoji
-    // replies: {type: Array, required: true}, // This may be challenging bc it needs recursion
 }, {timestamps: true});
 
 const requestSchema = new mongoose.Schema({
