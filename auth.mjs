@@ -1,5 +1,4 @@
 import "./db.mjs";
-import bcrypt from 'bcryptjs';
 import mongoose from 'mongoose';
 import passport from "passport";
 import LocalStrategy from 'passport-local';

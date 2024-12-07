@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import passportLocalMongoose from 'passport-local-mongoose';
 import mongooseSlugPlugin from 'mongoose-slug-plugin';
 
-mongoose.connect(process.env.DSN)
+mongoose.connect(process.env.DSN);
 
 const UserSchema = new mongoose.Schema({
     username: String,
@@ -28,7 +28,7 @@ const PostSchema = new mongoose.Schema({
     views: {type: Number, required: true},
     likes: {type: Number, required: true},
     comments: [{ type: ObjectId, ref: 'Comment' }]
-}, {timestamps: true})
+}, {timestamps: true});
 
 const CommentSchema = new mongoose.Schema({
     content: {type: String, required: true},
@@ -41,7 +41,7 @@ const requestSchema = new mongoose.Schema({
     posts: Number,
     comments: Number,
     message: String
-}, {timestamps: true})
+}, {timestamps: true});
 
 UserSchema.plugin(passportLocalMongoose);
 PostSchema.plugin(mongooseSlugPlugin, {tmpl: '<%=title%>'});
