@@ -50,8 +50,8 @@ then find a post named 'Please test POST requests here.' Thanks!
 
 URL for form 3 (from previous milestone) 
 ---
-[Request Authorization Form](http://linserv1.cims.nyu.edu:29249/request-authorize)
-[Admin Page](http://linserv1.cims.nyu.edu:29249/posts/administrate)
+* [Request Authorization Form](http://linserv1.cims.nyu.edu:29249/request-authorize)
+* [Admin Page](http://linserv1.cims.nyu.edu:29249/posts/administrate)
 
 Special Instructions for Form 3
 ---
@@ -98,9 +98,9 @@ Links to github line number(s) for research topics described above (one link per
 - [ESlint Sample Result](/documentation/eslint_result.png)
 - [tailwindCSS config](tailwind.config.js)
 - [tailwindCSS usage (layout.hbs)](/views/layout.hbs)
-- [nconf usage (app.mjs, lines 113-118)](/app.mjs:113)
-- [Login using passport (app.mjs, line 413)](/app.mjs:413)
-- [Registration using passport (app.mjs, line 462)](/app.mjs:462)
+- [nconf usage (app.mjs, lines 113-118)](/app.mjs?plain=1#L113)
+- [Login using passport (app.mjs, line 413)](/app.mjs?plain=1#L413)
+- [Registration using passport (app.mjs, line 462)](/app.mjs?plain=1#L462)
 
 Attributions
 ---
