@@ -50,11 +50,21 @@ then find a post named 'Please test POST requests here.' Thanks!
 
 URL for form 3 (from previous milestone) 
 ---
-(TODO: add link to a functioning form)
+[Request Authorization Form](http://linserv1.cims.nyu.edu:29249/request-authorize)
+[Admin Page](http://linserv1.cims.nyu.edu:29249/posts/administrate)
 
 Special Instructions for Form 3
 ---
-(TODO: if your app requires special instructions to use or if your app requires authentication, add information here; otherwise, leave blank)
+For this link, please use a regular user account:
+- id: testacct1
+- password: PASSword1!
+
+After login, please navigate to News section (in the top navigation bar),
+and then click on "Write a news article" button.
+
+After you complete the form, you will be able to see the request through [this link](http://linserv1.cims.nyu.edu:29249/posts/administrate) if you login to the admin account (`superuser`).
+
+You may try to click on 'Approve,' log back in `testacct1` then you will find that the account can post a news article.
 
 First link to github line number(s) for constructor, HOF, etc.
 ---
@@ -70,20 +80,33 @@ Short description for links above
 
 Link to github line number(s) for schemas (db.js or models folder)
 ---
-(TODO: add link to schemas)
+- [db.mjs](/db.mjs)
 
 Description of research topics above with points
 ---
-(TODO: add description of research topics here, including point values for each, one per line... for example: 2 points - applied and modified "Clean Blog" Bootstrap theme)
+* (3 points) Unit testing with JavaScript with `Jest`
+* (2 points) Integrate `eslint` into the workflow
+* (2 points) CSS framework or UI toolkit, use a reasonable of customization of the framework by `tailwindCSS`
+* (3 points) Configuration management through `nconf`
+* (1-2 points) Usage of `passport`
 
 Links to github line number(s) for research topics described above (one link per line)
 ---
-(TODO: add link to github line number(s), one per line for research topics ... for example, if using auth/passport, link to auth.js or where bulk of auth code is)
-
-Optional project notes 
---- 
-(TODO: optionall add add any other information required for using/testing the final project)
+- [Jest Testing](/test/test.js)
+- [Jest Sample Result](/documentation/Jest_Result.png)
+- [ESlint config](/eslint.config.js)
+- [ESlint Sample Result](/documentation/eslint_result.png)
+- [tailwindCSS config](tailwind.config.js)
+- [tailwindCSS usage (layout.hbs)](/views/layout.hbs)
+- [nconf usage (app.mjs, lines 113-118)](/app.mjs:113)
+- [Login using passport (app.mjs, line 413)](/app.mjs:413)
+- [Registration using passport (app.mjs, line 462)](/app.mjs:462)
 
 Attributions
 ---
-(TODO:  list sources that you have based your code off of, 1 per line, with file name, a very short description, and an accompanying url... for example: routes/index.js - Authentication code based off of http://foo.bar/baz ... alternatively, if you have already placed annotations in your project, answer "See source code comments")
+- [app.mjs: The main router](/app.mjs)
+- [auth.mjs: Enables registration and login, equipped with passport](/auth.mjs)
+- [config.mjs: Enables .env](/config.mjs)
+- [db.mjs: Database Model Definitions and simple configuration (e.g. adding slug)](/db.mjs)
+- [regiValidation.mjs: Helper functions to check if the username and the password are valid](/regiValidation.mjs)
+- [/views: List of handlebars including the layout](/views)

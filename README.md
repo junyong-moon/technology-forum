@@ -96,9 +96,9 @@ Access to this page requires registration.
 
 Here is a tentative list of research that I would like to explore:
 
-* (3 points) Unit testing with JavaScript (Implemented)
+* (3 points) Unit testing with JavaScript (Implemented, 4th test needed)
 * ~~(3 points) Built tools / task runners such as vite, Webpack, along with:~~
-* (2 points) Integrate ESLint into the workflow
+* (2 points) Integrate ESLint into the workflow (Implemented)
 * (2 points) CSS framework or UI toolkit, use a reasonable of customization of the framework (Implemented, customization needed)
 * (3 points) Configuration management through `nconf` (Implemented)
 

@@ -13,12 +13,13 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 
 /*  * TODOS (for milestone 4):
-    Improve search feature - need to fix the `entire search` using $text
-    Add eslint!!!!!
-    Add a unit test for Jest
+    Sanitization for db input
+    Add the last unit test for Jest
     Add error checking in the code
     when accessing db _id attr shouldn't be passed
     Change MILESTONE_04.md and README.md
+    Reploy the server
+    (Optional) Improve search feature - try to add search by Title + Content and Username
 */  
 
 const app = express();
