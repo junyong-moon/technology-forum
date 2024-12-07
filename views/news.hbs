@@ -25,6 +25,10 @@
 <div class="w-max mx-auto">
     <form method="GET" action="/news">
         <label for="searchQuery">Search: </label>
+        <select class="border-2 rounded-sm border-black" id="searchOption" name="searchOption">
+            <option value="title">Title</option>
+            <option value="content">Content</option>
+        </select>
         <input class="border-2 rounded-sm border-black w-[200px]" type="text" name="searchQuery" value="">
         <input class="border-2 rounded-sm border-black px-2 bg-slate-200 hover:bg-slate-300" type="submit" value="search">
     </form>

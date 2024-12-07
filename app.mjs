@@ -14,7 +14,7 @@ import { fileURLToPath } from 'url';
 import path from 'path'
 
 /*  * TODOS (for milestone 4):
-    Improve search feature
+    Improve search feature - need to fix the `entire search` using $text
     Add eslint!!!!!
     Add a unit test for Jest
     Add error checking in the code
@@ -87,8 +87,17 @@ app.get('/news', async (req, res) => {
     const filterObj = {};
 
     if (req.query.searchQuery) {
-        filterObj["$text"] = { $search: req.query.searchQuery };
+        if (req.query.searchOption === "title") {
+            filterObj["title"] = { $regex: req.query.searchQuery, $options: "i" };
+            console.log(filterObj);
+        } else if (req.query.searchOption === "content") {
+            filterObj["content"] = { $regex: req.query.searchQuery, $options: "i" };
+        }
     }
+
+    // if (req.query.searchQuery) {
+    //     filterObj[req.query.searchOption] = req.query.searchQuery;
+    // }
 
     const articles = await Article.find(filterObj).sort("-createdAt").exec();
     const articleList = articles.map(article => {
@@ -299,10 +308,16 @@ app.get('/posts', async (req, res) => {
     const filterObj = {};
 
     if (req.query.searchQuery) {
-        filterObj["$text"] = { $search: req.query.searchQuery };
+        if (req.query.searchOption === "title") {
+            filterObj["title"] = { $regex: req.query.searchQuery, $options: "i" };
+            console.log(filterObj);
+        } else if (req.query.searchOption === "content") {
+            filterObj["content"] = { $regex: req.query.searchQuery, $options: "i" };
+        }
     }
 
     const posts = await Post.find(filterObj).populate('writtenBy').sort("-createdAt").exec();
+
     const postList = posts.map(post => {
         const timeString = post.createdAt.toString();
         post.postedTime = timeString.slice(4, 10) + timeString.slice(15, 21);

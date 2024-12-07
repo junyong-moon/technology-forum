@@ -45,9 +45,7 @@ const requestSchema = new mongoose.Schema({
 
 UserSchema.plugin(passportLocalMongoose);
 PostSchema.plugin(mongooseSlugPlugin, {tmpl: '<%=title%>'});
-PostSchema.index({ title: "text" });
 ArticleSchema.plugin(mongooseSlugPlugin, {tmpl: '<%=title%>'});
-ArticleSchema.index({ title: "text" });
 
 mongoose.model('User', UserSchema);
 mongoose.model('Article', ArticleSchema);
