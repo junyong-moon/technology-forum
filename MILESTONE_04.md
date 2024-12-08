@@ -25,7 +25,7 @@ URL for form 1 (from previous milestone)
 Special Instructions for Form 1
 ---
 For login, please use the following account:
-- id: testacct
+- id: testacct1
 - password: PASSword1!
 
 If you want to register, please make sure that:
@@ -42,7 +42,7 @@ URL for form 2 (for current milestone)
 Special Instructions for Form 2
 ---
 For login, please use the following account:
-- id: testacct
+- id: testacct1
 - password: PASSword1!
 
 After login, please navigate to Posts section (in the top navigation bar),
