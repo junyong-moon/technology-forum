@@ -25,7 +25,7 @@ URL for form 1 (from previous milestone)
 Special Instructions for Form 1
 ---
 For login, please use the following account:
-- id: superuser
+- id: testacct
 - password: PASSword1!
 
 If you want to register, please make sure that:
@@ -42,11 +42,11 @@ URL for form 2 (for current milestone)
 Special Instructions for Form 2
 ---
 For login, please use the following account:
-- id: superuser
+- id: testacct
 - password: PASSword1!
 
 After login, please navigate to Posts section (in the top navigation bar),
-then find a post named 'Please test POST requests here.' Thanks! 
+then find a post named 'Please test POST requests here.'
 
 URL for form 3 (from previous milestone) 
 ---
@@ -59,7 +59,7 @@ For the first link, please use a regular user account:
 - id: testacct1
 - password: PASSword1!
 
-For the seoncd link, please use the admin account:
+For the second link, please use the admin account:
 - id: superuser
 - password: PASSword1!
 
@@ -72,11 +72,11 @@ You may try to click on 'Approve,' log back in `testacct1` then you will find th
 
 First link to github line number(s) for constructor, HOF, etc.
 ---
-[Higher order function: Array.prototype.map](/app.mjs?plain=1#L315) 
+[Higher order function: Array.prototype.map](/app.mjs?plain=1#L308) 
 
 Second link to github line number(s) for constructor, HOF, etc.
 ---
-[Higher order function: Array.prototype.filter](/app.mjs?plain=1#L280)  
+[Higher order function: Array.prototype.filter](/app.mjs?plain=1#L263)
 
 Short description for links above
 ---
@@ -103,10 +103,10 @@ Links to github line number(s) for research topics described above (one link per
 - [ESlint Sample Result](/documentation/eslint_result.png)
 - [tailwindCSS config](tailwind.config.js)
 - [tailwindCSS usage (layout.hbs)](/views/layout.hbs)
-- [nconf usage 1 (app.mjs, lines 115-120)](/app.mjs?plain=1#L115)
-- [nconf usage 2 (app.mjs, lines 291-299)](/app.mjs?plain=1#L291)
-- [Login using passport (app.mjs, line 414)](/app.mjs?plain=1#L414)
-- [Registration using passport (app.mjs, line 464)](/app.mjs?plain=1#L464)
+- [nconf usage 1 (app.mjs, lines 99-104)](/app.mjs?plain=1#L99)
+- [nconf usage 2 (app.mjs, lines 189-194)](/app.mjs?plain=1#L189)
+- [Login using passport (app.mjs, line 399)](/app.mjs?plain=1#L399)
+- [Registration using passport (app.mjs, line 444)](/app.mjs?plain=1#L444)
 
 Attributions
 ---

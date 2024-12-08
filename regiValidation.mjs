@@ -58,8 +58,9 @@ function combinationValid(username, password) {
     const passwordLower = password.toLowerCase();
 
     for (let i = 0; i < usernameLower.length - 4; i++) {
-        if (passwordLower.includes(usernameLower.slice(i, i+4)))
+        if (passwordLower.includes(usernameLower.slice(i, i+4))) {
             return false;
+        }
     }
 
     return true;

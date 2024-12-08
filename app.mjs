@@ -6,23 +6,12 @@ import { usernameValid, passwordValid, combinationValid } from './regiValidation
 import express from 'express';
 import session from 'express-session';
 import mongoose from 'mongoose';
-import sanitize from 'mongo-sanitize'
+import sanitize from 'mongo-sanitize';
 import passport from 'passport';
 import nconf from 'nconf';
 
 import { fileURLToPath } from 'url';
 import path from 'path';
-
-/*  * TODOS (for milestone 4):
-    Sanitization for db input *
-    Add the last unit test for Jest *
-    Add error checking in the code *
-    Change MILESTONE_04.md and README.md
-    Reploy the server
-    Add comments for better description
-    (Optional) Improve search feature - try to add search by Title + Content and Username
-    (Optional) Add feature to delete/edit posts, news, and comments
-*/  
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -89,7 +78,6 @@ app.get('/news', async (req, res) => {
     if (req.query.searchQuery) {
         if (req.query.searchOption === "title") {
             filterObj.title = { $regex: req.query.searchQuery, $options: "i" };
-            console.log(filterObj);
         } else if (req.query.searchOption === "content") {
             filterObj.content = { $regex: req.query.searchQuery, $options: "i" };
         }
@@ -107,13 +95,13 @@ app.get('/news', async (req, res) => {
 app.get('/news/add', async (req, res) => {
     // Here we can possible use nconf to check if the user is athentificated as an article-writer
     // Admins bypass this
+    
     nconf.argv()
     .env()
     .file({ file: './nconf/authorized-members.json' });
 
     const username = res.locals.user.username;
     const authorizedMembers = nconf.get("members");
-    console.log(authorizedMembers, username);
 
     const user = await User.findOne({username: username});
 
@@ -310,7 +298,6 @@ app.get('/posts', async (req, res) => {
     if (req.query.searchQuery) {
         if (req.query.searchOption === "title") {
             filterObj.title = { $regex: req.query.searchQuery, $options: "i" };
-            console.log(filterObj);
         } else if (req.query.searchOption === "content") {
             filterObj.content = { $regex: req.query.searchQuery, $options: "i" };
         }
