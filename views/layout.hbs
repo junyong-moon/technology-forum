@@ -17,6 +17,9 @@
         {{#if user}}
             Logged in as: {{user.username}}
             <a class="text-blue-400 hover:font-medium" href="/logout">logout</a>
+            {{#if user.isAdmin}}
+            <a class="text-green-400 hover:font-medium" href="/administrate">Administration</a>
+            {{/if}}
         {{else}}
             <a class="text-blue-400 hover:font-medium" href="/login">Login</a>
         {{/if}}

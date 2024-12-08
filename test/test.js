@@ -1,4 +1,4 @@
-import { usernameValid, passwordValid } from "../regiValidation.mjs";
+import { usernameValid, passwordValid, combinationValid } from "../regiValidation.mjs";
 
 test("Username must be from 6 to 20 letters", () => {
     expect(usernameValid("abcdef")).toBe(true);
@@ -30,5 +30,17 @@ test("Password must be at least 8 letters, while having a combination of upperca
     expect(passwordValid("eGr;a1l")).toBe(false);
     expect(passwordValid("1q2W3e4R!")).toBe(true);
 });
+
+test("The password cannot contain 4 consecutive letters (case-insensitively) from the username, (i.e. the password must not have any 'chunks' of the username)", () => {
+    expect(combinationValid("username", "userPASS1!")).toBe(false);
+    expect(combinationValid("username", "USERpass1!")).toBe(false);
+    expect(combinationValid("username", "PASSuser1!")).toBe(false);
+    expect(combinationValid("username", "usPASSer1!")).toBe(true);
+    expect(combinationValid("username", "1!Erna!1")).toBe(false);
+    expect(combinationValid("testacct", "testING1!!")).toBe(false);
+    expect(combinationValid("testacct", "TEsting1!!")).toBe(false);
+    expect(combinationValid("testacct", "Stac1!!!")).toBe(false);
+    expect(combinationValid("testacct", "Tect1!!!")).toBe(true);
+})
 
 // TODO: Make fourth test

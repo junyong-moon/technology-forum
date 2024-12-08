@@ -28,12 +28,13 @@
     <p class="text-lg text-orange-600">{{message}}</p>
 </div>
 {{/if}}
-<div class="p-2 border-2 border-black w-[450px] m-auto text-sm">
+<div class="p-2 border-2 border-black w-[550px] m-auto text-sm">
     <h3 class="text-center text-lg font-semibold">Register Instructions</h3>
     <div class="indent-2">
-    <p>The username must contain at least 8 letters.</p>
+    <p>The username must contain at least 8 letters and no more than 20 letters.</p>
     <p>The password must satisfy the following:</p>
     <ul class="list-disc pl-6">
+        <li><p>It must not have the username included.</p></li>
         <li><p>It must contain at list 8 letters.</p></li>
         <li><p>It must contain all of each:</p></li>
         <ol class=" list-decimal pl-6">

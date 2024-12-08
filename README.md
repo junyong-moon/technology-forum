@@ -1,9 +1,8 @@
-# Technology Forum (Tentative Name - subject to change)
+# Technology Forum
 
 ## Overview
 
 Technology Forum is a community to share tech information and knowledge, for developers and technology enthusiasts. It is a simple website consisting of a newsstand--where administrators and authorized users share news--and a forum--where users and post information/questions to the related topics. After registration, users are free to share their opinion and knowledge, as well as to rant about recent Apple product! Not only can they do this in a post, but they may do so in a comment, given that the language is appropriate.
-
 
 ## Data Model
 

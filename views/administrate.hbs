@@ -6,6 +6,12 @@
     Click "Approve" to grant authorization to the user.
 </h3>
 
+{{#if longWaiting}}
+<p class="text-center text-lg py-2">The number of request(s) that has been pending for more than 24 hours: 
+    <span class="font-semibold">{{longWaiting}}</span>
+</p>
+{{/if}}
+
 <div class="px-6">
 <table class="border-2 w-[1000px] border-gray-700 text-center mx-auto">
     <tr class="border border-y-gray-700">
